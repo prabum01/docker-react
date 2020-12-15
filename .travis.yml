@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run -e CI=true prabum01/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstack
+  region: "us-east-2"
+  app: "docker-react"
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-us-east-2-018282230405" #Travis puts compress and put in S3 harddrive
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
