@@ -1,0 +1,9 @@
+sudo: required # Docker require super user permission 
+services:
+  - docker # copy of docker cli 
+
+before_install:
+  - docker build -t prabum01/docker-react -f Dockerfile-dev .
+
+script:
+  - docker run prabum01/docker-react npm run test -- --coverage
